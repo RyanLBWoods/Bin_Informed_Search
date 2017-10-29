@@ -71,4 +71,8 @@ public class Node {
         }
         return childNodes;
     }
+    
+    public int ManhattanDis(Node goal){
+    	return Math.abs(goal.getX() - this.x) + Math.abs(goal.getY() - this.y);
+    }
 }

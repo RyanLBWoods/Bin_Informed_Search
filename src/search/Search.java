@@ -15,9 +15,27 @@ public class Search {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			int map_num = Integer.valueOf(args[0]);
-			char[][] map = Map.getMap(map_num);
-			String search_algorithm = args[1];
+//			int map_num = Integer.valueOf(args[0]);
+//			char[][] map = Map.getMap(1);
+			char[][] map = new char[][] {
+				{ 'I', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'X', 'O', 'O', 'X', 'O' },
+				{ 'O', 'O', 'O', 'X', 'O', 'O', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'B', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' },
+				{ 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'G' }
+			};
+//			char[][] map = new char[][] {
+//				{'I', 'O', 'O', 'O'},
+//				{'O', 'B', 'O', 'O'},
+//				{'O', 'O', 'O', 'O'},
+//				{'O', 'O', 'X', 'G'}
+//			};
+//			String search_algorithm = args[1];
 			// Get map information
 			for (int i = 0; i < map.length; i++) {
 				for (int j = 0; j < map[i].length; j++) {
@@ -32,16 +50,20 @@ public class Search {
 					}
 				}
 			}
+			// Find Bob
+			BestFirstSearch.BestFS(map, start, bob);
+			// Find Goal
+			BestFirstSearch.BestFS(map, bob, goal);
 			// Search
-			switch(search_algorithm){
-				default:
-					System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BFS or DFS)");
-					break;
+//			switch(search_algorithm){
+//				default:
+//					System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BestFS or A*)");
+//					break;
 //				case "BestFS":
 //					// Find Bob
-//					BFS.BFSearch(map, start, bob);
+//					BestFirstSearch.BestFS(map, start, bob);
 //					// Find Goal
-//					BFS.BFSearch(map, bob, goal);
+//					BestFirstSearch.BestFS(map, bob, goal);
 //					break;
 //				case "A*":
 //					// Find Bob
@@ -49,9 +71,9 @@ public class Search {
 //					// Find Goal
 //					DFS.DFSearch(map, bob, goal);
 //					break;
-			}
+//			}
 		} catch (Exception e) {
-			System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BFS or DFS)");
+			System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BestFS or A*)");
 		}
 	}
 
