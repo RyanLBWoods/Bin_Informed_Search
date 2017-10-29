@@ -54,6 +54,10 @@ public class Search {
 			BestFirstSearch.BestFS(map, start, bob);
 			// Find Goal
 			BestFirstSearch.BestFS(map, bob, goal);
+			// Find Bob
+			AStarSearch.AStar(map, start, bob);
+			// Find Goal
+			AStarSearch.AStar(map, bob, goal);
 			// Search
 //			switch(search_algorithm){
 //				default:

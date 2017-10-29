@@ -13,6 +13,7 @@ public class Node {
     private int x;
     private int y;
     public char value;
+    public int path_cost;
     Node uChild;
     Node dChild;
     Node lChild;
@@ -74,5 +75,9 @@ public class Node {
     
     public int ManhattanDis(Node goal){
     	return Math.abs(goal.getX() - this.x) + Math.abs(goal.getY() - this.y);
+    }
+    
+    public double EuclidianDis(Node goal) {
+    	return Math.sqrt(Math.pow(2, (goal.getX() - this.x)) + Math.pow(2, (goal.getY() - this.y)));
     }
 }
