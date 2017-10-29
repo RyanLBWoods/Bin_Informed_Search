@@ -5,10 +5,26 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class AStarSearch extends SearchMethod{
-	
-	public static void AStar(char[][] map, Node start, Node goal){
+public class AStarSearch extends SearchMethod {
+	/**
+	 * Set path length to 1 as the distance between two connected point is
+	 * always 1.
+	 */
+	public static final int PATH_LENGTH = 1;
+
+	/**
+	 * A* Search
+	 * 
+	 * @param map
+	 *            The map to search
+	 * @param start
+	 *            The start node
+	 * @param goal
+	 *            The target node
+	 */
+	public static void AStar(char[][] map, Node start, Node goal) {
 		// Set comparator for priority queue
+		// f(n) = Euclidian distance + path cost
 		Comparator<Node> cmp = new Comparator<Node>() {
 			public int compare(Node n1, Node n2) {
 				if (n1.path_cost + n1.EuclidianDis(goal) > n2.path_cost + n2.EuclidianDis(goal)) {
@@ -21,15 +37,19 @@ public class AStarSearch extends SearchMethod{
 		};
 
 		PriorityQueue<Node> frontier = new PriorityQueue<Node>(cmp);
+		// Record nodes that have already become a child
 		ArrayList<Node> explored = new ArrayList<>();
+		// Record nodes that have been explored
 		ArrayList<Node> childs = new ArrayList<>();
 		// Initialise process
 		start.parent = start;
 		start.path_cost = 0;
 		frontier.add(start);
 		explored.add(start);
+		// Search from frontier
 		while (!frontier.isEmpty()) {
 			Node current = frontier.remove();
+			// Check if reach the goal
 			if (current.getValue() == goal.getValue()) {
 				Node path = current;
 				ArrayList<int[]> Path = new ArrayList<>();
@@ -58,11 +78,11 @@ public class AStarSearch extends SearchMethod{
 				System.out.println("\n");
 				break;
 			} else {
-				/*
-				 * Get child nodes 1. give the potential child nodes 2. check if
-				 * the potential child node is the parent node or has been
-				 * explored 3. if so, get rid of that child node
-				 */
+				// Get child nodes and record is path cost
+				// Give the potential child nodes
+				// Check if the potential child node is the parent node or has
+				// been explored
+				// If so, get rid of that child node
 				if (current.getX() - 1 >= 0 && map[current.getX() - 1][current.getY()] != 'X') {
 					current.uChild = new Node(current.getX() - 1, current.getY(),
 							map[current.getX() - 1][current.getY()]);
@@ -71,7 +91,7 @@ public class AStarSearch extends SearchMethod{
 						current.uChild = null;
 					} else {
 						current.uChild.parent = current;
-						current.uChild.path_cost = current.parent.path_cost + 1;
+						current.uChild.path_cost = current.parent.path_cost + PATH_LENGTH;
 					}
 				}
 				if (current.getX() + 1 < 10 && map[current.getX() + 1][current.getY()] != 'X') {
@@ -82,7 +102,7 @@ public class AStarSearch extends SearchMethod{
 						current.dChild = null;
 					} else {
 						current.dChild.parent = current;
-						current.dChild.path_cost = current.parent.path_cost + 1;
+						current.dChild.path_cost = current.parent.path_cost + PATH_LENGTH;
 					}
 				}
 				if (current.getY() - 1 >= 0 && map[current.getX()][current.getY() - 1] != 'X') {
@@ -93,7 +113,7 @@ public class AStarSearch extends SearchMethod{
 						current.lChild = null;
 					} else {
 						current.lChild.parent = current;
-						current.lChild.path_cost = current.parent.path_cost + 1;
+						current.lChild.path_cost = current.parent.path_cost + PATH_LENGTH;
 					}
 				}
 				if (current.getY() + 1 < 10 && map[current.getX()][current.getY() + 1] != 'X') {
@@ -104,10 +124,10 @@ public class AStarSearch extends SearchMethod{
 						current.rChild = null;
 					} else {
 						current.rChild.parent = current;
-						current.rChild.path_cost = current.parent.path_cost + 1;
+						current.rChild.path_cost = current.parent.path_cost + PATH_LENGTH;
 					}
 				}
-				// Set frontier
+				// Insert nodes to frontier
 				if (!current.getChildren().isEmpty()) {
 					frontier.addAll(current.getChildren());
 					childs.addAll(current.getChildren());

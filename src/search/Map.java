@@ -109,7 +109,7 @@ public class Map {
 			map = map6;
 			break;
 		default:
-			System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BFS or DFS)");
+			System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BestFS or A*)");
 			break;
 		}
 		return map;

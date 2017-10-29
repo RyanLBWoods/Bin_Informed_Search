@@ -6,9 +6,19 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class BestFirstSearch extends SearchMethod {
-
+	/**
+	 * Best-first algorithm
+	 * 
+	 * @param map
+	 *            The map to search
+	 * @param start
+	 *            The start node
+	 * @param goal
+	 *            The target node
+	 */
 	public static void BestFS(char[][] map, Node start, Node goal) {
 		// Set comparator for priority queue
+		// f(n) = Manhattan Distance
 		Comparator<Node> cmp = new Comparator<Node>() {
 			public int compare(Node n1, Node n2) {
 				if (n1.ManhattanDis(goal) > n2.ManhattanDis(goal)) {
@@ -21,7 +31,9 @@ public class BestFirstSearch extends SearchMethod {
 		};
 
 		PriorityQueue<Node> frontier = new PriorityQueue<Node>(cmp);
+		// Record nodes that have already become a child
 		ArrayList<Node> explored = new ArrayList<>();
+		// Record nodes that have been explored
 		ArrayList<Node> childs = new ArrayList<>();
 		// Initialise process
 		start.parent = start;
@@ -58,11 +70,11 @@ public class BestFirstSearch extends SearchMethod {
 				System.out.println("\n");
 				break;
 			} else {
-				/*
-				 * Get child nodes 1. give the potential child nodes 2. check if
-				 * the potential child node is the parent node or has been
-				 * explored 3. if so, get rid of that child node
-				 */
+				// Get child nodes
+				// Give the potential child nodes
+				// Check if the potential child node is the parent node or has
+				// been explored
+				// If so, get rid of that child node
 				if (current.getX() - 1 >= 0 && map[current.getX() - 1][current.getY()] != 'X') {
 					current.uChild = new Node(current.getX() - 1, current.getY(),
 							map[current.getX() - 1][current.getY()]);
@@ -103,7 +115,7 @@ public class BestFirstSearch extends SearchMethod {
 						current.rChild.parent = current;
 					}
 				}
-				// Set frontier
+				// Insert nodes to frontier
 				if (!current.getChildren().isEmpty()) {
 					frontier.addAll(current.getChildren());
 					childs.addAll(current.getChildren());

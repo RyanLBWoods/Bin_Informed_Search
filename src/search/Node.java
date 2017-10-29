@@ -78,6 +78,6 @@ public class Node {
     }
     
     public double EuclidianDis(Node goal) {
-    	return Math.sqrt(Math.pow(2, (goal.getX() - this.x)) + Math.pow(2, (goal.getY() - this.y)));
-    }
+		return Math.sqrt(Math.pow(2, (goal.getX() - this.x)) + Math.pow(2, (goal.getY() - this.y)));
+	}
 }
