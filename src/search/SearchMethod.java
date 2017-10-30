@@ -9,7 +9,10 @@ public abstract class SearchMethod {
 	 * always 1.
 	 */
 	public static final int PATH_LENGTH = 1;
-
+	/**
+	 * A boolean type variable to check if the search succeed.
+	 */
+	public static boolean find = false;
 	/**
 	 * Check if node has been explored.
 	 * 

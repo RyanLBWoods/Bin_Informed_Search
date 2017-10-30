@@ -1,17 +1,10 @@
 package search;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class AStarSearch extends SearchMethod {
-	/**
-	 * Set path length to 1 as the distance between two connected point is
-	 * always 1.
-	 */
-//	public static final int PATH_LENGTH = 1;
-
 	/**
 	 * A* Search
 	 * 
@@ -52,6 +45,7 @@ public class AStarSearch extends SearchMethod {
 			Node current = frontier.remove();
 			// Check if reach the goal
 			if (current.getValue() == goal.getValue()) {
+				find = true;
 				printOutput(current, start, goal, explored);
 				break;
 			} else {

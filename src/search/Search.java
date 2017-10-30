@@ -40,16 +40,35 @@ public class Search {
 				case "BestFS":
 					// Find Bob
 					BestFirstSearch.BestFS(map, start, bob);
+					if(BestFirstSearch.find == false){
+						System.out.println("Can not find path to Bob");
+						System.exit(0);
+					}
 					// Find Goal
+					BestFirstSearch.find = false;
 					BestFirstSearch.BestFS(map, bob, goal);
+					if(SearchMethod.find == false){
+						System.out.println("Can not find path to Goal");
+						System.exit(0);
+					}
 					break;
 				case "A*":
 					// Find Bob
 					AStarSearch.AStar(map, start, bob);
+					if(AStarSearch.find == false){
+						System.out.println("Can not find path to Bob");
+						System.exit(0);
+					}
 					// Find Goal
+					AStarSearch.find = false;
 					AStarSearch.AStar(map, bob, goal);
+					if(AStarSearch.find == false){
+						System.out.println("Can not find path to Goal");
+						System.exit(0);
+					}
 					break;
 			}
+			
 		} catch (Exception e) {
 			System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BestFS or A*)");
 		}

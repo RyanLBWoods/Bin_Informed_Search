@@ -1,7 +1,6 @@
 package search;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -43,6 +42,7 @@ public class BestFirstSearch extends SearchMethod {
 		while (!frontier.isEmpty()) {
 			Node current = frontier.remove();
 			if (current.getValue() == goal.getValue()) {
+				find = true;
 				printOutput(current, start, goal, explored);
 				break;
 			} else {
