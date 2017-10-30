@@ -70,51 +70,7 @@ public class BestFirstSearch extends SearchMethod {
 				System.out.println("\n");
 				break;
 			} else {
-				// Get child nodes
-				// Give the potential child nodes
-				// Check if the potential child node is the parent node or has
-				// been explored
-				// If so, get rid of that child node
-				if (current.getX() - 1 >= 0 && map[current.getX() - 1][current.getY()] != 'X') {
-					current.uChild = new Node(current.getX() - 1, current.getY(),
-							map[current.getX() - 1][current.getY()]);
-					if (Arrays.equals(current.uChild.getLocation(), current.parent.getLocation())
-							|| !existChild(childs, current.uChild) || !notExplored(explored, current.uChild)) {
-						current.uChild = null;
-					} else {
-						current.uChild.parent = current;
-					}
-				}
-				if (current.getX() + 1 < 10 && map[current.getX() + 1][current.getY()] != 'X') {
-					current.dChild = new Node(current.getX() + 1, current.getY(),
-							map[current.getX() + 1][current.getY()]);
-					if (Arrays.equals(current.dChild.getLocation(), current.parent.getLocation())
-							|| !existChild(childs, current.dChild) || !notExplored(explored, current.dChild)) {
-						current.dChild = null;
-					} else {
-						current.dChild.parent = current;
-					}
-				}
-				if (current.getY() - 1 >= 0 && map[current.getX()][current.getY() - 1] != 'X') {
-					current.lChild = new Node(current.getX(), current.getY() - 1,
-							map[current.getX()][current.getY() - 1]);
-					if (Arrays.equals(current.lChild.getLocation(), current.parent.getLocation())
-							|| !existChild(childs, current.lChild) || !notExplored(explored, current.lChild)) {
-						current.lChild = null;
-					} else {
-						current.lChild.parent = current;
-					}
-				}
-				if (current.getY() + 1 < 10 && map[current.getX()][current.getY() + 1] != 'X') {
-					current.rChild = new Node(current.getX(), current.getY() + 1,
-							map[current.getX()][current.getY() + 1]);
-					if (Arrays.equals(current.rChild.getLocation(), current.parent.getLocation())
-							|| !existChild(childs, current.rChild) || !notExplored(explored, current.rChild)) {
-						current.rChild = null;
-					} else {
-						current.rChild.parent = current;
-					}
-				}
+				findChild(current, map, childs, explored);
 				// Insert nodes to frontier
 				if (!current.getChildren().isEmpty()) {
 					frontier.addAll(current.getChildren());
