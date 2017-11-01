@@ -9,7 +9,6 @@ package search;
 import java.util.LinkedList;
 
 public class Node {
-    // public char status;
     private int x;
     private int y;
     public char value;
@@ -72,12 +71,25 @@ public class Node {
         }
         return childNodes;
     }
-    
-    public int ManhattanDis(Node goal){
-    	return Math.abs(goal.getX() - this.x) + Math.abs(goal.getY() - this.y);
-    }
-    
-    public double EuclidianDis(Node goal) {
+    /**
+	 * Get Manhattan Distance between current node and goal node.
+	 * 
+	 * @param goal
+	 *            The goal node
+	 * @return Return Manhattan distance
+	 */
+	public int ManhattanDis(Node goal) {
+		return Math.abs(goal.getX() - this.x) + Math.abs(goal.getY() - this.y);
+	}
+
+	/**
+	 * Get Euclidian distance between current node and goal node.
+	 * 
+	 * @param goal
+	 *            The goal node
+	 * @return Return Euclidian distance
+	 */
+	public double EuclidianDis(Node goal) {
 		return Math.sqrt(Math.pow((goal.getX() - this.x), 2) + Math.pow((goal.getY() - this.y), 2));
 	}
 }

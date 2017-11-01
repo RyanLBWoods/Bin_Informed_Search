@@ -33,9 +33,9 @@ public class AStarSearch extends SearchMethod {
 
 		PriorityQueue<Node> frontier = new PriorityQueue<Node>(cmp);
 		// Record nodes that have already become a child
-		ArrayList<Node> explored = new ArrayList<>();
-		// Record nodes that have been explored
 		ArrayList<Node> childs = new ArrayList<>();
+		// Record nodes that have been explored
+		ArrayList<Node> explored = new ArrayList<>();
 		// Initialise process
 		start.parent = start;
 		start.path_cost = 0;
