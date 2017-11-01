@@ -1,6 +1,7 @@
 package search;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -37,10 +38,12 @@ public class BestFirstSearch extends SearchMethod {
 		// Initialise process
 		start.parent = start;
 		frontier.add(start);
+		// Add start to explored list to avoid null pointer exception
 		explored.add(start);
 
 		while (!frontier.isEmpty()) {
 			Node current = frontier.remove();
+			System.out.println("Current node: " + Arrays.toString(current.getLocation()));
 			if (current.getValue() == goal.getValue()) {
 				find = true;
 				printOutput(current, start, goal, explored);
@@ -52,7 +55,10 @@ public class BestFirstSearch extends SearchMethod {
 					frontier.addAll(current.getChildren());
 					childs.addAll(current.getChildren());
 				}
+				showFrontier(frontier);
 				explored.add(current);
+				showExplored(explored);
+				System.out.println();
 			}
 		}
 	}

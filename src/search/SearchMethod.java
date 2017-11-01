@@ -2,6 +2,7 @@ package search;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public abstract class SearchMethod {
 	/**
@@ -13,6 +14,7 @@ public abstract class SearchMethod {
 	 * A boolean type variable to check if the search succeed.
 	 */
 	public static boolean find = false;
+
 	/**
 	 * Check if node has been explored.
 	 * 
@@ -149,5 +151,37 @@ public abstract class SearchMethod {
 			System.out.print(Arrays.toString(explored.get(j).getLocation()));
 		}
 		System.out.println("\n");
+	}
+
+	/**
+	 * Method to print frontiers.
+	 * 
+	 * @param frontier
+	 *            A priority queue of frontiers to print
+	 */
+	public static void showFrontier(PriorityQueue<Node> frontier) {
+		StringBuffer str = new StringBuffer();
+		str.append("Frontier: {");
+		for (Node n : frontier) {
+			str.append(Arrays.toString(n.getLocation()) + ", ");
+		}
+		str.replace(str.length() - 2, str.length(), "}");
+		System.out.println(str);
+	}
+
+	/**
+	 * Method to show explored node.
+	 * 
+	 * @param explored
+	 *            The array list of explored to print
+	 */
+	public static void showExplored(ArrayList<Node> explored) {
+		StringBuffer str = new StringBuffer();
+		str.append("Explored: {");
+		for (int i = 1; i < explored.size(); i++) {
+			str.append(Arrays.toString(explored.get(i).getLocation()) + ", ");
+		}
+		str.replace(str.length() - 2, str.length(), "}");
+		System.out.println(str);
 	}
 }

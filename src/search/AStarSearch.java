@@ -1,6 +1,7 @@
 package search;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -39,10 +40,12 @@ public class AStarSearch extends SearchMethod {
 		start.parent = start;
 		start.path_cost = 0;
 		frontier.add(start);
+		// Add start to explored list to avoid null pointer exception
 		explored.add(start);
 		// Search from frontier
 		while (!frontier.isEmpty()) {
 			Node current = frontier.remove();
+			System.out.println("Current node: " + Arrays.toString(current.getLocation()));
 			// Check if reach the goal
 			if (current.getValue() == goal.getValue()) {
 				find = true;
@@ -55,7 +58,10 @@ public class AStarSearch extends SearchMethod {
 					frontier.addAll(current.getChildren());
 					childs.addAll(current.getChildren());
 				}
+				showFrontier(frontier);
 				explored.add(current);
+				showExplored(explored);
+				System.out.println();
 			}
 		}
 	}
