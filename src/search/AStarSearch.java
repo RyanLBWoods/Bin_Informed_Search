@@ -42,6 +42,9 @@ public class AStarSearch extends SearchMethod {
 		frontier.add(start);
 		// Add start to explored list to avoid null pointer exception
 		explored.add(start);
+		
+		int max = 0;
+		
 		// Search from frontier
 		while (!frontier.isEmpty()) {
 			Node current = frontier.remove();
@@ -50,6 +53,7 @@ public class AStarSearch extends SearchMethod {
 			if (current.getValue() == goal.getValue()) {
 				find = true;
 				printOutput(current, start, goal, explored);
+				System.out.println(max);
 				break;
 			} else {
 				findChild(current, map, childs, explored);
@@ -62,6 +66,9 @@ public class AStarSearch extends SearchMethod {
 				explored.add(current);
 				showExplored(explored);
 				System.out.println();
+			}
+			if(frontier.size() > max){
+				max = frontier.size();
 			}
 		}
 	}

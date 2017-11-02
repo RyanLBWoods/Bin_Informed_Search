@@ -41,12 +41,15 @@ public class BestFirstSearch extends SearchMethod {
 		// Add start to explored list to avoid null pointer exception
 		explored.add(start);
 
+		int max = 0;
+		
 		while (!frontier.isEmpty()) {
 			Node current = frontier.remove();
 			System.out.println("Current node: " + Arrays.toString(current.getLocation()));
 			if (current.getValue() == goal.getValue()) {
 				find = true;
 				printOutput(current, start, goal, explored);
+				System.out.println(max);
 				break;
 			} else {
 				findChild(current, map, childs, explored);
@@ -59,6 +62,9 @@ public class BestFirstSearch extends SearchMethod {
 				explored.add(current);
 				showExplored(explored);
 				System.out.println();
+			}
+			if(frontier.size() > max){
+				max = frontier.size();
 			}
 		}
 	}

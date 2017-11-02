@@ -32,6 +32,7 @@ public class Search {
 					}
 				}
 			}
+			long time = System.currentTimeMillis();
 			// Search
 			switch(search_algorithm){
 				default:
@@ -42,6 +43,7 @@ public class Search {
 					BestFirstSearch.BestFS(map, start, bob);
 					if(BestFirstSearch.find == false){
 						System.out.println("Can not find path to Bob");
+						System.out.println(System.currentTimeMillis() - time);
 						System.exit(0);
 					}
 					// Find Goal
@@ -49,6 +51,7 @@ public class Search {
 					BestFirstSearch.BestFS(map, bob, goal);
 					if(SearchMethod.find == false){
 						System.out.println("Can not find path to Goal");
+						System.out.println(System.currentTimeMillis() - time);
 						System.exit(0);
 					}
 					break;
@@ -57,6 +60,7 @@ public class Search {
 					AStarSearch.AStar(map, start, bob);
 					if(AStarSearch.find == false){
 						System.out.println("Can not find path to Bob");
+						System.out.println(System.currentTimeMillis() - time);
 						System.exit(0);
 					}
 					// Find Goal
@@ -64,10 +68,12 @@ public class Search {
 					AStarSearch.AStar(map, bob, goal);
 					if(AStarSearch.find == false){
 						System.out.println("Can not find path to Goal");
+						System.out.println(System.currentTimeMillis() - time);
 						System.exit(0);
 					}
 					break;
 			}
+			System.out.println(System.currentTimeMillis() - time);
 			
 		} catch (Exception e) {
 			System.out.println("Usage: java -jar Search1.jar map_number(1 - 6) search_Algorithm(BestFS or A*)");
